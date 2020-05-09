@@ -33,7 +33,8 @@
     "build": "rescripts build",
     "debug": "concurrently \"npm run debug:react\" \"wait-on http://localhost:3000 && npm run debug:electron\"",
     "debug:react": "cross-env BROWSER=none npm start",
-    "debug:electron": "electron ."
+    "debug:electron": "electron .",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
