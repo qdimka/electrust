@@ -1,25 +1,43 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "build",
+    "baseUrl": ".",
     "allowJs": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "target": "ESNext",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   },
   "include": [
-    "renderer"
+    "./**/*"
   ]
+
+//  "compilerOptions": {
+//    "target": "es5",
+//    "lib": [
+//      "dom",
+//      "dom.iterable",
+//      "esnext"
+//    ],
+//    "allowJs": true,
+//    "skipLibCheck": true,
+//    "esModuleInterop": true,
+//    "allowSyntheticDefaultImports": true,
+//    "strict": true,
+//    "forceConsistentCasingInFileNames": true,
+//    "module": "esnext",
+//    "moduleResolution": "node",
+//    "resolveJsonModule": true,
+//    "isolatedModules": true,
+//    "noEmit": true,
+//    "jsx": "react"
+//  },
+//  "include": [
+//    "renderer"
+//  ]
 }

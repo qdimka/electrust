@@ -49,7 +49,9 @@ class Startup {
             }
         });
 
-        await this.window.loadURL(`file://${path.join(__dirname,"../static/index.html")}`);
+        await this.window.loadURL(!this.application.isPackaged
+            ? "http://localhost:8080"
+            :`file://${path.join(__dirname,"../static/index.html")}`);
     }
 
     private static onWindowAllClosed(): void {

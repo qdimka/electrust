@@ -1,54 +1,51 @@
 {
   "name": "electrust",
   "version": "0.1.0",
-  "main": "build/main.bundle.js",
   "private": true,
+  "main": "build/main.bundle.js",
   "dependencies": {
+    "@babel/core": "7.9.0",
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
-    "electron-devtools-installer": "^3.0.0",
+    "babel-loader": "8.1.0",
+    "babel-plugin-named-asset-import": "^0.3.6",
+    "babel-preset-react-app": "^9.1.2",
     "electron": "^8.2.5",
+    "electron-devtools-installer": "^3.0.0",
+    "fs-extra": "^8.1.0",
+    "html-webpack-plugin": "4.0.0-beta.11",
     "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
+    "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
-    "typescript": "^3.8.3"
+    "semver": "6.3.0",
+    "typescript": "^3.8.3",
+    "webpack": "4.42.0",
+    "webpack-dev-server": "3.10.3",
+    "webpack-manifest-plugin": "2.2.0",
+    "workbox-webpack-plugin": "4.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
+    "@babel/core": "^7.9.0",
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
-    "@rescripts/cli": "^0.0.14",
-    "@rescripts/rescript-env": "^0.0.12",
-    "@rescripts/rescript-use-babel-config": "^0.0.10",
     "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.7.5",
     "wait-on": "^5.0.0",
-    "react-scripts": "^3.4.1",
-    "typescript": "^3.7.5"
+    "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "debug": "concurrently \"npm run debug:react\" \"wait-on http://localhost:3000 && npm run debug:electron\"",
-    "debug:react": "cross-env BROWSER=none npm start",
-    "debug:electron": "electron .",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start:react": "webpack-dev-server --mode development --hot",
+    "start:electron": "webpack --mode=development && electron .",
+    "build": "webpack --mode production",
+    "debug": "concurrently \"npm run debug:react\" \"wait-on http://localhost:8080 && npm run start:electron\"",
+    "debug:react": "cross-env BROWSER=none npm run start:react"
   }
 }
