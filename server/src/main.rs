@@ -1,3 +1,6 @@
+mod handlers;
+mod infrastructure;
+
 use std::{
     collections::HashMap,
     env,
@@ -13,9 +16,9 @@ use futures_util::{
 };
 
 use futures_channel::mpsc::{unbounded, UnboundedSender};
-
 use tokio::net::{TcpListener, TcpStream};
 use tungstenite::protocol::Message;
+use crate::infrastructure::configuration::Configuration;
 
 type Tx = UnboundedSender<Message>;
 type PeerMap = Arc<Mutex<HashMap<SocketAddr, Tx>>>;
@@ -40,16 +43,18 @@ async fn handle_connection(peer_map: PeerMap, raw_stream: TcpStream, addr: Socke
             addr,
             msg.to_text().unwrap()
         );
+
         let peers = peer_map.lock().unwrap();
 
         // We want to broadcast the message to everyone except ourselves.
         let broadcast_recipients = peers
             .iter()
-            .filter(|(peer_addr, _)| peer_addr != &&addr)
+            //.filter(|(peer_addr, _)| peer_addr != &&addr)
             .map(|(_, ws_sink)| ws_sink);
 
         for recp in broadcast_recipients {
-            recp.unbounded_send(msg.clone()).unwrap();
+            let m = Message::
+            recp.unbounded_send().unwrap();
         }
 
         future::ok(())
