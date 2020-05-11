@@ -44,6 +44,7 @@
   "scripts": {
     "start:react": "webpack-dev-server --mode development --hot",
     "start:electron": "webpack --mode=development && electron .",
+    "start:wss": "cargo run --manifest-path server/Cargo.toml",
     "build": "webpack --mode production",
     "debug": "concurrently \"npm run debug:react\" \"wait-on http://localhost:8080 && npm run start:electron\"",
     "debug:react": "cross-env BROWSER=none npm run start:react"

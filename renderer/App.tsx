@@ -1,7 +1,12 @@
 import React from 'react';
 import './App.css';
 
+const client = new WebSocket('ws://localhost:9999');
+
 function App() {
+  client.onopen = (e) => console.log(e);
+  client.onmessage = (m) => console.log(m);
+
   return (
     <div className="App">
       <header className="App-header">
